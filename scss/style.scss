@@ -1,20 +1,54 @@
-$primary-clor: #9e037a;
-$accent-clor: #ff6527;
-$text-clor: #fff;
+@import "./resets";
+@import "./variables";
 
-$font-weights:(
-    "regular":400,
-    "medium":500,
-    "bold": 700
-);
+/**
+* Use to compute and return values
+*/
+@function weight($weight-name) {
+  @return map-get($font-weights, $weight-name);
+}
+
+/**
+* Use to define styles
+*/
+@mixin flexCenter($direction) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+@mixin theme($light-theme: true) {
+  @if $light-theme {
+    background: lighten($primary-color, 100%);
+    color: darken($text-color, 100%);
+  }
+}
 
 body {
-    background: $accent-clor;
-    color: $text-clor;
-    font-weight: map-get($font-weights, regular );
+  background: $accent-clor;
+  color: $text-clor;
 }
 
 .main {
-    width: 80%;
-    margin: 10px auto;
+  @include flexCenter(row); // call to mixin
+  width: 80%;
+  margin: 20px auto;
+
+  /**
+    * Interpolation: 
+    * # --> everything before & (parent)
+    * & --> parent
+    */
+  #{&}_para {
+    font-weight: weight(regular);
+
+    &:hover {
+      color: blue;
+    }
+  }
+}
+
+.light {
+    @include theme($light-theme: true);
 }
