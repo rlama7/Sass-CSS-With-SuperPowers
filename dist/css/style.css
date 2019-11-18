@@ -87,15 +87,10 @@ body {
           flex-direction: row;
   width: 80%;
   margin: 20px auto;
-  /**
-    * Interpolation: 
-    * # --> everything before & (parent)
-    * & --> parent
-    */
 }
 
 .main .main_para {
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .main .main_para:hover {
