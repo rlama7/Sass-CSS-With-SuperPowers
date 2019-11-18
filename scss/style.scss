@@ -41,13 +41,22 @@ body {
   width: 80%;
   margin: 20px auto;
   
-  #{&}_para {
-    font-weight: weight(regular);
+  #{&}_para1 {
+    font-weight: weight(bold);
 
     &:hover {
       color: blue;
     }
   }
+
+  #{&}_para2 {
+    @extend .main_para1;
+
+    &:hover {
+      color: $accent-color;
+    }
+  }
+
   @include mobile{
     flex-direction: column;
   }
