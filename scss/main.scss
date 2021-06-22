@@ -2,6 +2,35 @@
 @import './resets';
 @import './variables';
 
+// function -> works similar to function in JavaScript
+// function --> should be used for computing and/or returning values
+@function weight($weight-name) {
+  @return map-get($font-weights, $weight-name);
+}
+
+// mixin -> use @include mixinName
+// mixin --> shold be used for styling
+@mixin flexCenter($direction) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin theme($light-theme: true) {
+  @if $light-theme {
+    background: lighten($primary-color, 100%);
+    color: darken($text-color, 100%);
+  }
+}
+
+// media query for mobile
+@mixin mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
 body {
   background-color: $primary-color;
   color: $text-color;
@@ -10,14 +39,35 @@ body {
 // & -> refers to parent
 // #{&} -> refers to inherit from parent then apply child css
 .main {
+  @include flexCenter(row);
   width: 80%;
   margin: 0 auto;
 
-  #{&}__paragraph {
-    font-weight: map-get($font-weights, bold);
+  #{&}__paragraph1 {
+    font-weight: weight(bold);
 
     &:hover {
       color: $accent-color;
     }
   }
+
+  // para2 extends aka inherits from main_paragraph1
+  // with some additional styles
+  // this way we don't duplicate main_paragraph1 while
+  // with flexibility to add new styles to main_paragraph2
+  #{&}__paragraph2 {
+    @extend .main__paragraph1;
+
+    &:hover {
+      color: greenyellow;
+    }
+  }
+
+  @include mobile {
+    flex-direction: column;
+  }
+}
+
+.light {
+  @include theme(false);
 }
