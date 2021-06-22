@@ -1,0 +1,18 @@
+/** 
+* partial variable component
+*/
+
+// declare variable
+$primary-color: #0f1112;
+$accent-color: #ff6527;
+$text-color: #fff;
+
+// map
+$font-weights: (
+  'regular': 400,
+  'medium': 500,
+  'bold': 700,
+);
+
+// mobile screen
+$mobile: 800px;
