@@ -1,3 +1,6 @@
+// imports
+@import './resets';
+
 // create variables
 $primary-color: #272727;
 $accent-color: #ff6527;
@@ -20,8 +23,10 @@ body {
 .main {
   width: 80%;
   margin: 0 auto;
+
   #{&}__paragraph {
     font-weight: map-get($font-weights, bold);
+
     &:hover {
       color: $accent-color;
     }
