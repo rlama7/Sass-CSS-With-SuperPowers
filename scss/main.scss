@@ -1,7 +1,7 @@
 // create variables
 $primary-color: #272727;
 $accent-color: #ff6527;
-$text-color: red;
+$text-color: #fff;
 
 // create map {key:value}
 $font-weights: (
@@ -13,5 +13,17 @@ $font-weights: (
 body {
   background-color: $primary-color;
   color: $text-color;
-  font-weight: map-get($font-weights, bold);
+}
+
+// & -> refers to parent
+// #{&} -> refers to inherit from parent then apply child css
+.main {
+  width: 80%;
+  margin: 0 auto;
+  #{&}__paragraph {
+    font-weight: map-get($font-weights, bold);
+    &:hover {
+      color: $accent-color;
+    }
+  }
 }
